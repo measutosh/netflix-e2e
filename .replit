@@ -1,4 +1,4 @@
-run = "cd netflix-e2e && npm run dev"
+run = "npm run dev"
 
 [nix]
 channel = "stable-22_11"
