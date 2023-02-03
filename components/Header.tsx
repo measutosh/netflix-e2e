@@ -1,11 +1,34 @@
 import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { BellIcon } from '@heroicons/react/24/solid';
-import { Link } from 'react-router-dom';
-
+// import Link from 'next/Link';
+import { useEffect, useState } from 'react'
 
 function Header() {
+
+    //handling states, using react hook
+    const [ isScrolled, setIsScrolled ] = useState(false)
+
+    // when the component mounts
+    useEffect(() =>{
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                setIsScrolled(true)
+            }
+            else {
+                setIsScrolled(false)
+            }
+        }
+        window.addEventListener("scroll", handleScroll)
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll)
+        }
+        // empty dependenc is here because this shouldn't run everytime
+        // it only should when the scrolling is going on
+    },[]) 
+    
     return (
-        <header>
+        <header className={`${isScrolled && `bg-[#141414]`}`}>
             <div className="flex items-center space-x-2 md:space-x-10">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
@@ -34,7 +57,7 @@ function Header() {
                         src="https://occ-0-1190-2774.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo.png?r=a41"
                         height={100}
                         width={100}
-                        classname="cursor-pointor object-container"
+                        classname="cursor-pointor rounded"
                     />
                 </Link>*/}
                 
